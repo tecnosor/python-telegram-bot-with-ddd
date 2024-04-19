@@ -334,8 +334,7 @@ class CommandsCTEs:
     CTE_COMMANDQ_MY_POSITION_STAR = "MiPosicionStar"
 
 
-## CONSTANTS PRIVATES
-CTE_API_TOKEN = "7067466377:AAGg0IfqxjFuw30wtmSNDoT1nUIdvcAJMbA"
+## CON
 
 
 if __name__ == '__main__':
