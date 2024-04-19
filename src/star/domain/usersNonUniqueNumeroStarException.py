@@ -1,0 +1,2 @@
+class UsersNonUniqueNumeroStarException(Exception):
+    pass

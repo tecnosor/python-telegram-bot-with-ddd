@@ -1,0 +1,2 @@
+class TranslationSpanish(Translations):
+    pass

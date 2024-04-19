@@ -1,0 +1,2 @@
+class SecretKeyNotFoundException(Exception):
+    pass

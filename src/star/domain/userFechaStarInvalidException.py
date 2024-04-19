@@ -1,0 +1,2 @@
+class UserFechaStarInvalidException(Exception):
+    pass

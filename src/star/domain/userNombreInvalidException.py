@@ -1,0 +1,2 @@
+class UserNombreInvalidException(Exception):
+    pass

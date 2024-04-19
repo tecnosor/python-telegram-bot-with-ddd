@@ -1,0 +1,2 @@
+class UserNumeroStarInvalidException(Exception):
+    pass
