@@ -72,5 +72,5 @@ Si tienes alguna duda o quieres colaborar, no dudes en abrir un issue o hacer un
 
 
 ## Top Contributors
-@alfonsoplusplus | Creación del bot y definición de arquitectura y mínimos.
-@roberto22palomar | Evolución del bot y documentación
+- @alfonsoplusplus | Creación del bot y definición de arquitectura y mínimos.
+- @roberto22palomar | Evolución del bot y documentación
