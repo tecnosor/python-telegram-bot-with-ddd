@@ -70,3 +70,7 @@ Además, cuando inicies por primera vez, el bot te enviará un mensaje de bienve
 Si tienes alguna duda o quieres colaborar, no dudes en abrir un issue o hacer un pull request.  
 ¡Gracias por usar el Bot Número Star!
 
+
+## Top Contributors
+@alfonsoplusplus | Creación del bot y definición de arquitectura y mínimos.
+@roberto22palomar | Evolución del bot y documentación
