@@ -149,25 +149,28 @@ class TelegramBotStarServiceListenerHost(StarServiceListenerHost):
 
     # OK
     def __get_posicion_comando(self, update: Update, context: CallbackContext) -> None:
-        if update.message.chat.type != "private":
-            return
-        user_id = int(update.message.from_user.id)
+        print(f"📌 Recibido comando /MiPosicion de {update.message.from_user.id}")
 
-        # Ordenar el diccionario por numero_star
+        if update.message.chat.type != "private":
+            print("⚠️ Comando rechazado: No es chat privado")
+            return
+        
+        user_id = int(update.message.from_user.id)
         get_my_position = GetMyPosition(user_id)
         get_my_position_handler = GetMyPositionHandler(self.__user_repository)
+
         try:
             position = get_my_position_handler.handle(get_my_position)
+            print(f"✅ Usuario encontrado. Posición: {position.posicion}/{position.total_usuarios}")
             update.message.reply_text(
                 f"{update.message.from_user.first_name}, tu posición en la lista de Star es: {position.posicion} de {position.total_usuarios}"
             )
         except Exception as e:
-            if isinstance(e, UserNotFoundException) or isinstance(
-                e, PosicionInvalidaException
-            ):
-                update.message.reply_text(
-                    f"Lo siento, primero tienes que añadirte a la lista o actualizar tu número star para poder consultar tu posición. /{Operations.Ctes.REGISTRAR.value} ó /{Operations.Ctes.ACTUALIZAR.value}"
-                )
+            print(f"❌ Error en /MiPosicion: {e}")  # Debugging
+            update.message.reply_text(
+                f"Lo siento, primero tienes que añadirme a la lista con /{Operations.Ctes.REGISTRAR.value}"
+            )
+
 
     # OK
     def __start_comando(self, update: Update, context: CallbackContext) -> None:

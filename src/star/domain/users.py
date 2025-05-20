@@ -1,3 +1,4 @@
+import random
 from typing import List
 from star.domain.position import Position
 from star.domain.user import User
@@ -6,16 +7,24 @@ from star.domain.usersNonUniqueNumeroStarException import UsersNonUniqueNumeroSt
 
 class Users:
     def __init__(self, users: List[User]):
-        self.__validate_unique_numero_star(users)
-        self.__users: List[User] = users
+        self.__users: List[User] = []
+        self.__assigned_numero_stars = set()
+        self.__add_users(users)
 
-    def __validate_unique_numero_star(self, users: List[User]):
-        numero_star_set = set()
+    def __add_users(self, users: List[User]):
         for user in users:
-            if user.numero_star in numero_star_set:
-                raise UsersNonUniqueNumeroStarException("El número Star debe ser único.")
-            numero_star_set.add(user.numero_star)
-    
+            if user.numero_star in self.__assigned_numero_stars:
+                user.numero_star = self.__generate_unique_numero_star()
+            self.__assigned_numero_stars.add(user.numero_star)
+            self.__users.append(user)
+
+    def __generate_unique_numero_star(self) -> int:
+        """Genera un número aleatorio único entre 99000 y 99999."""
+        while True:
+            new_numero_star = random.randint(99000, 99999)
+            if new_numero_star not in self.__assigned_numero_stars:
+                return new_numero_star
+
     def get_posicion(self, user: User) -> Position:
         sorted_users = sorted(self.__users, key=lambda user: user.numero_star)
         position = next((i + 1 for i, user_in_list in enumerate(sorted_users) if user_in_list.user_id == user.user_id), None)
@@ -23,6 +32,4 @@ class Users:
         return Position(position, valid_users)
     
     def is_numero_star_in_list(self, numero_star: int) -> bool:
-        return numero_star in [u.numero_star for u in self.__users]
-        
-        
+        return numero_star in self.__assigned_numero_stars
